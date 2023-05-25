@@ -35,6 +35,7 @@ import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -79,8 +80,10 @@ public class Offer implements Serializable {
     private VatEnum vat;
     @JsonProperty(required = true)
     private String currencyId;
+    @JacksonXmlElementWrapper(useWrapping = false)
+    @JacksonXmlProperty(localName = "categoryId")
     @JsonProperty(required = true)
-    private Long categoryId;
+    private List<String> categories;
     @JacksonXmlElementWrapper(useWrapping = false)
     @JacksonXmlProperty(localName = "picture")
     private List<String> pictures;
@@ -352,12 +355,16 @@ public class Offer implements Serializable {
         return this;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public List<String> getCategories() {
+        return categories;
     }
 
-    public Offer setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public Offer addCategoryId(String categoryId) {
+        if (categories == null) {
+            categories = new ArrayList<String>();
+        }
+
+        this.categories.add(categoryId);
         return this;
     }
 

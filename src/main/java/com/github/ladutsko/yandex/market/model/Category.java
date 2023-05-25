@@ -34,18 +34,18 @@ public class Category {
 
     @JacksonXmlProperty(isAttribute = true)
     @JsonProperty(required = true)
-    private Long id;
+    private String id;
     @JacksonXmlProperty(isAttribute = true)
     private Long parentId;
     @JacksonXmlText
     @JsonProperty(required = true)
     private String value;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public Category setId(Long id) {
+    public Category setId(String id) {
         this.id = id;
         return this;
     }
